@@ -1,0 +1,24 @@
+[tool.poetry]
+name = "get-papers-list"
+version = "0.1.0"
+description = "Fetch PubMed papers with non-academic authors"
+authors = ["Your Name <your.email@example.com>"]
+packages = [{ include = "pubmed" }]
+
+[tool.poetry.dependencies]
+python = "^3.10"
+requests = "*"
+pandas = "*"
+typer = {extras = ["all"], version = "*"}
+lxml = "*"
+fastapi = "^0.115.14"
+uvicorn = "^0.35.0"
+jinja2 = "^3.1.6"
+python-multipart = "^0.0.20"
+
+[tool.poetry.scripts]
+get-papers-list = "pubmed.main:app"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>PubMed Paper Search</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="p-4">
+    <div class="container">
+        <h1 class="mb-4">🔍 PubMed Paper Search</h1>
+        <form method="post">
+            <div class="mb-3">
+                <input class="form-control" name="query" placeholder="Enter search query..." required>
+            </div>
+            <div class="d-flex gap-2">
+                <button class="btn btn-primary" type="submit" name="action" value="search">Search</button>
+                {% if results %}
+                <button class="btn btn-success" type="submit" name="action" value="download">Download CSV</button>
+                {% endif %}
+            </div>
+        </form>
+
+        {% if results %}
+            <hr>
+            <h4 class="mt-4">Results for: <em>{{ query }}</em></h4>
+            <table class="table table-bordered mt-3">
+                <thead>
+                    <tr>
+                        <th>PubmedID</th>
+                        <th>Title</th>
+                        <th>Date</th>
+                        <th>Authors</th>
+                        <th>Affiliations</th>
+                        <th>Email</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for r in results %}
+                    <tr>
+                        <td>{{ r.PubmedID }}</td>
+                        <td>{{ r.Title }}</td>
+                        <td>{{ r.Date }}</td>
+                        <td>{{ r.Authors }}</td>
+                        <td>{{ r.Affiliations }}</td>
+                        <td>{{ r.Email }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        {% endif %}
+    </div>
+</body>
+</html>
